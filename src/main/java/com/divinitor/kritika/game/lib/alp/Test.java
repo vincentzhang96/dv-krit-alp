@@ -29,7 +29,7 @@ public class Test {
 
         SeekableByteChannel seekableByteChannel = Files.newByteChannel(path);
         ByteBuffer buf = ByteBuffer.allocateDirect((int) seekableByteChannel.size());
-        seekableByteChannel.read(buf);
+        while (seekableByteChannel.read(buf) >0 );
         buf.flip();
         buf.order(ByteOrder.LITTLE_ENDIAN);
 
