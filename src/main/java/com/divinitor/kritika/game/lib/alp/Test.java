@@ -1,5 +1,6 @@
 package com.divinitor.kritika.game.lib.alp;
 
+import com.divinitor.kritika.game.lib.alp.io.AlphReader;
 import com.divinitor.kritika.util.KritUtilities;
 import com.divinitor.kritika.util.crypto.RotatingXor;
 import com.google.common.io.LittleEndianDataInputStream;
@@ -33,20 +34,25 @@ public class Test {
         buf.flip();
         buf.order(ByteOrder.LITTLE_ENDIAN);
 
-        int magic = buf.getInt();
-        if (magic != 0x41504b47) {
-            System.out.printf("Warning: header mismatch, expected GKPA, got %s\n",
-                    new String(Ints.toByteArray(magic)));
-        }
+        AlphReader reader = new AlphReader();
 
-        int version = Short.toUnsignedInt(buf.getShort());
-        if (version != 4) {
-            System.out.printf("Warning: Ran into version %s\n", version);
-        }
+        Alph header = reader.read(buf);
+        System.out.println(header.getRoot().getBodyAsDir().getChildren().size());
 
-        int indexOffset = buf.getInt();
-        buf.position(indexOffset);
-        readTable(buf, "");
+//        int magic = buf.getInt();
+//        if (magic != 0x41504b47) {
+//            System.out.printf("Warning: header mismatch, expected GKPA, got %s\n",
+//                    new String(Ints.toByteArray(magic)));
+//        }
+//
+//        int version = Short.toUnsignedInt(buf.getShort());
+//        if (version != 4) {
+//            System.out.printf("Warning: Ran into version %s\n", version);
+//        }
+//
+//        int indexOffset = buf.getInt();
+//        buf.position(indexOffset);
+//        readTable(buf, "");
     }
 
     private static void readTable(ByteBuffer buf, String path) {
