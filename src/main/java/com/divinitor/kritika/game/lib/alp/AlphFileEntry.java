@@ -6,8 +6,6 @@ public class AlphFileEntry extends AlphEntryBody {
 
     public static final int SZ_COMPRESSION_DATA = 5;
 
-    protected transient AlphEntry enclosingEntry;
-
     byte compressionMode;
     byte[] compressionParam;
 
@@ -18,7 +16,6 @@ public class AlphFileEntry extends AlphEntryBody {
     transient Instant timestampInstant;
     int crcA;
     int crcB;
-    String name;
 
     public AlphFileEntry() {
     }
@@ -45,14 +42,6 @@ public class AlphFileEntry extends AlphEntryBody {
 
     public void setCompressionMode(AlphFileCompressionMode mode) {
         this.compressionMode = (byte) mode.value();
-    }
-
-    public AlphEntry getEnclosingEntry() {
-        return enclosingEntry;
-    }
-
-    public void setEnclosingEntry(AlphEntry enclosingEntry) {
-        this.enclosingEntry = enclosingEntry;
     }
 
     public int getOffset() {
@@ -114,13 +103,5 @@ public class AlphFileEntry extends AlphEntryBody {
 
     public void setCrcB(int crcB) {
         this.crcB = crcB;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

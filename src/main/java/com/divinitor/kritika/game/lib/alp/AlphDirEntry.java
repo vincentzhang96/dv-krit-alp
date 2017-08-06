@@ -5,23 +5,13 @@ import java.util.List;
 
 public class AlphDirEntry extends AlphEntryBody {
 
-    protected transient AlphEntry enclosingEntry;
     int subfolderCount;
     int subfileCount;
-    String name;
 
     protected final List<AlphEntry> children;
 
     public AlphDirEntry() {
         children = new ArrayList<>();
-    }
-
-    public AlphEntry getEnclosingEntry() {
-        return enclosingEntry;
-    }
-
-    public void setEnclosingEntry(AlphEntry enclosingEntry) {
-        this.enclosingEntry = enclosingEntry;
     }
 
     public int getSubfolderCount() {
@@ -38,14 +28,6 @@ public class AlphDirEntry extends AlphEntryBody {
 
     public void setSubfileCount(int subfileCount) {
         this.subfileCount = subfileCount;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public List<AlphEntry> getChildren() {
