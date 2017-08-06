@@ -39,6 +39,10 @@ public class Test {
         Alph header = reader.read(buf);
         System.out.println(header.getRoot().getBodyAsDir().getChildren().size());
 
+        print(header.getRoot());
+
+
+
 //        int magic = buf.getInt();
 //        if (magic != 0x41504b47) {
 //            System.out.printf("Warning: header mismatch, expected GKPA, got %s\n",
@@ -53,6 +57,13 @@ public class Test {
 //        int indexOffset = buf.getInt();
 //        buf.position(indexOffset);
 //        readTable(buf, "");
+    }
+
+    private static void print(AlphEntry entry) {
+        System.out.println(entry.getPath());
+        if (entry.getTypeEnum() == AlphEntryType.DIRECTORY) {
+            entry.getBodyAsDir().getChildren().forEach(Test::print);
+        }
     }
 
     private static void readTable(ByteBuffer buf, String path) {
