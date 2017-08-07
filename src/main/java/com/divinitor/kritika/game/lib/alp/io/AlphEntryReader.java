@@ -26,7 +26,8 @@ public class AlphEntryReader implements StructReader<AlphEntry> {
     }
 
     @Override
-    public AlphEntry read(InputStream inputStream, int offset) throws IOException, StructReadException {
+    public AlphEntry read(InputStream inputStream, int offset)
+            throws IOException, StructReadException {
         LittleEndianDataInputStream dis = KritUtilities.ensureLittleEndian(inputStream);
 
         AlphEntry ret = new AlphEntry();
@@ -57,7 +58,8 @@ public class AlphEntryReader implements StructReader<AlphEntry> {
     }
 
     @Override
-    public AlphEntry read(ByteBuffer buf) throws StructReadException {
+    public AlphEntry read(ByteBuffer buf)
+            throws StructReadException {
         buf.order(ByteOrder.LITTLE_ENDIAN);
 
         AlphEntry ret = new AlphEntry();
@@ -85,7 +87,8 @@ public class AlphEntryReader implements StructReader<AlphEntry> {
         return ret;
     }
 
-    private void readEntry(AlphEntry entry, byte[] data, int baseOffset) {
+    private void readEntry(AlphEntry entry, byte[] data, int baseOffset)
+            throws StructReadException {
         ByteBuffer buf = ByteBuffer.wrap(data);
         buf.order(ByteOrder.LITTLE_ENDIAN);
 
@@ -97,7 +100,10 @@ public class AlphEntryReader implements StructReader<AlphEntry> {
         try {
             type = entry.getTypeEnum();
         } catch (NoSuchElementException nsee) {
-            throw new StructReadException("Invalid enum: " + entry.getType(), baseOffset + 4, "type");
+            throw new StructReadException(
+                    "Invalid enum: " + entry.getType(),
+                    baseOffset + 4,
+                    "type");
         }
 
         switch (type) {
@@ -115,7 +121,10 @@ public class AlphEntryReader implements StructReader<AlphEntry> {
                 try {
                     body.getCompressionModeEnum();
                 } catch (NoSuchElementException nsee) {
-                    throw new StructReadException("Invalid enum: " + body.getCompressionMode(), baseOffset + 6, "compressionMode");
+                    throw new StructReadException(
+                            "Invalid enum: " + body.getCompressionMode(),
+                            baseOffset + 6,
+                            "compressionMode");
                 }
 
                 byte[] compressParam = new byte[AlphFileEntry.SZ_COMPRESSION_DATA];

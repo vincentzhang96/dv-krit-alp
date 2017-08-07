@@ -49,7 +49,8 @@ public class AlphReader implements StructReader<Alph> {
     }
 
     @Override
-    public Alph read(ByteBuffer buf) throws StructReadException {
+    public Alph read(ByteBuffer buf)
+            throws StructReadException {
         buf.order(ByteOrder.LITTLE_ENDIAN);
 
         Alph ret = new Alph();

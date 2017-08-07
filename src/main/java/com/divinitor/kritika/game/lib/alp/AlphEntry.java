@@ -2,13 +2,13 @@ package com.divinitor.kritika.game.lib.alp;
 
 public class AlphEntry {
 
-    protected AlphEntry parentEntry;
-    protected int entrySize;
-    protected int magic;
-    protected short type;
-    protected AlphEntryBody body;
+    AlphEntry parentEntry;
+    int entrySize;
+    int magic;
+    short type;
+    AlphEntryBody body;
 
-    protected transient String cachedPath;
+    transient String cachedPath;
 
     public AlphEntry() {
     }
