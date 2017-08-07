@@ -3,21 +3,14 @@ package com.divinitor.kritika.game.lib.alp;
 import com.divinitor.kritika.game.lib.alp.io.AlphReader;
 import com.divinitor.kritika.util.KritUtilities;
 import com.divinitor.kritika.util.crypto.RotatingXor;
-import com.google.common.io.LittleEndianDataInputStream;
-import com.google.common.primitives.Bytes;
-import com.google.common.primitives.Ints;
 
-import java.io.File;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.nio.MappedByteBuffer;
-import java.nio.channels.FileChannel;
 import java.nio.channels.SeekableByteChannel;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Test {
@@ -30,7 +23,7 @@ public class Test {
 
         SeekableByteChannel seekableByteChannel = Files.newByteChannel(path);
         ByteBuffer buf = ByteBuffer.allocateDirect((int) seekableByteChannel.size());
-        while (seekableByteChannel.read(buf) >0 );
+        while (seekableByteChannel.read(buf) > 0) ;
         buf.flip();
         buf.order(ByteOrder.LITTLE_ENDIAN);
 
@@ -40,7 +33,6 @@ public class Test {
         System.out.println(header.getRoot().getBodyAsDir().getChildren().size());
 
         print(header.getRoot());
-
 
 
 //        int magic = buf.getInt();

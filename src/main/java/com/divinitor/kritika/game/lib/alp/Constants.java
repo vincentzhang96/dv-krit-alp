@@ -2,7 +2,8 @@ package com.divinitor.kritika.game.lib.alp;
 
 public class Constants {
 
-    private Constants() {}
+    private Constants() {
+    }
 
     public static int alphMagic() {
         return 0x41504B47;
