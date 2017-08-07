@@ -104,4 +104,8 @@ public class AlphFileEntry extends AlphEntryBody {
     public void setCrcB(int crcB) {
         this.crcB = crcB;
     }
+
+    public AlphLightweightFileEntry lite() {
+        return new AlphLightweightFileEntry(this);
+    }
 }
